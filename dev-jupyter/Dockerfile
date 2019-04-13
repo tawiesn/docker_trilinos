@@ -69,6 +69,12 @@ WORKDIR /root
 COPY do-conf-tp-serial /root/
 RUN ./install_trilinos.sh
 
+RUN pip3 install jupyter_contrib_nbextensions
+RUN pip3 install jupyter_nbextensions_configurator
+RUN jupyter nbextensions_configurator enable --user
+RUN jupyter contrib nbextension install --user
+RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
+
 env PATH /opt/clang/bin/:$PATH
 env LD_LIBRARY_PATH /root/install/do-conf-tp-serial/lib/:$LD_LIBRARY_PATH
 
