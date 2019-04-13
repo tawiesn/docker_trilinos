@@ -1,0 +1,70 @@
+#!/bin/sh
+
+CONFIG_NAME=$(basename $0 .sh)
+
+TRILINOS_HOME=`pwd`/Trilinos
+BUILD_DIR=`pwd`/build/$CONFIG_NAME
+INSTALL_DIR=`pwd`/install/$CONFIG_NAME
+
+EXTRA_ARGS=$@
+
+if [ -e $BUILD_DIR ]; then 
+    echo Error: $BUILD_DIR already exist. 
+fi
+
+mkdir -p $BUILD_DIR
+cd $BUILD_DIR
+
+#rm CMakeCache.txt
+
+# create a trilinos-version file which contains the git hash of the last commit
+pushd $TRILINOS_HOME
+echo `git log -n 1| head -n 3` > $BUILD_DIR/trilinos-version
+popd
+
+cmake \
+    -D CMAKE_BUILD_TYPE:STRING=DEBUG \
+    -D BUILD_SHARED_LIBS:BOOL=ON \
+    -D TPL_ENABLE_MPI:BOOL=OFF \
+\
+    -D CMAKE_INSTALL_PREFIX:STRING=$INSTALL_DIR \
+    -D Trilinos_ENABLE_ALL_OPTIONAL_PACKAGES:BOOL=OFF \
+    -D Trilinos_ENABLE_EXPLICIT_INSTANTIATION:BOOL=ON \
+    -D CMAKE_C_COMPILER:STRING="/opt/clang/bin/clang" \
+    -D CMAKE_CXX_COMPILER:STRING="/opt/clang/bin/clang++" \
+    -D CMAKE_AR:STRING="/opt/clang/bin/llvm-ar" \
+    -D CMAKE_LINKER:STRING="/opt/clang/bin/llvm-ld" \
+    -D CMAKE_NM:STRING="/opt/clang/bin/llvm-nm" \
+    -D CMAKE_OBJDUMP:STRING="/opt/clang/bin/llvm-objdump" \
+    -D CMAKE_RANLIB:STRING="/opt/clang/bin/llvm-ranlib" \
+    -D CMAKE_SHARED_LINKER_FLAGS:STRING="-Wl,--no-undefined" \
+\
+    -D Trilinos_ENABLE_MueLu:BOOL=ON \
+    -D Xpetra_ENABLE_Experimental:BOOL=ON \
+    -D Xpetra_ENABLE_Kokkos_Refactor:BOOL=OFF \
+    -D Xpetra_ENABLE_TESTS:BOOL=ON \
+    -D MueLu_ENABLE_Experimental:BOOL=OFF \
+    -D MueLu_ENABLE_EXAMPLES:BOOL=OFF \
+    -D MueLu_ENABLE_TESTS:BOOL=OFF \
+    -D MueLu_ENABLE_Kokkos_Refactor:BOOL=OFF \
+\
+    -D Trilinos_ENABLE_Tpetra:BOOL=OFF \
+    -D Trilinos_ENABLE_Epetra:BOOL=ON \
+    -D Trilinos_ENABLE_EpetraExt:BOOL=ON \
+    -D Trilinos_ENABLE_Ifpack:BOOL=ON \
+    -D Trilinos_ENABLE_Isorropia:BOOL=ON \
+    -D Trilinos_ENABLE_Amesos:BOOL=ON \
+    -D Trilinos_ENABLE_Zoltan:BOOL=ON \
+    -D Trilinos_ENABLE_AztecOO:BOOL=ON \
+    -D Trilinos_ENABLE_Belos:BOOL=ON \
+    -D Trilinos_ENABLE_Galeri:BOOL=ON \
+    -D Trilinos_ENABLE_ML:BOOL=ON \
+    -D Trilinos_ENABLE_Thyra:BOOL=ON \
+\
+    -D Teuchos_ENABLE_LONG_LONG_INT:BOOL=OFF \
+\
+    -D Trilinos_ENABLE_INSTALL_CMAKE_CONFIG_FILES:BOOL=OFF \
+    -D Trilinos_DEPS_XML_OUTPUT_FILE:FILEPATH="" \
+\
+    $EXTRA_ARGS \
+    ${TRILINOS_HOME}
