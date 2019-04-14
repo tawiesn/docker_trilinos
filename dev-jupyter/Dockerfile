@@ -82,12 +82,12 @@ WORKDIR /workspace
 COPY *.ipynb /workspace/
 
 
-### Add Tini. Tini operates as a process subreaper for jupyter. This prevents
+## Add Tini. Tini operates as a process subreaper for jupyter. This prevents
 ### kernel crashes.
-#ENV TINI_VERSION v0.6.0
-#ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
-#RUN chmod +x /usr/bin/tini
-#ENTRYPOINT ["/usr/bin/tini", "jupyter", "notebook", "--ip=.0.0.0.0", "--allow-root", "--port=8888"]
+ENV TINI_VERSION v0.6.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
+RUN chmod +x /usr/bin/tini
+ENTRYPOINT ["/usr/bin/tini", "jupyter", "notebook", "--", "--allow-root", "--port=8888"]
 
 ##EXPOSE 8888
 #CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0"]
