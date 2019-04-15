@@ -81,11 +81,7 @@ env LD_LIBRARY_PATH /root/install/do-conf-tp-serial/lib/:$LD_LIBRARY_PATH
 WORKDIR /workspace
 
 
-RUN mkdir /root/.ssh/
-COPY id_rsa* /root/.ssh/
-COPY known_hosts /root/.ssh/
-
-RUN git clone git@github.com:tawiesn/trilinos-notebooks.git /workspace/
+#RUN git clone git@github.com:tawiesn/trilinos-notebooks.git /workspace/
 
 # temp remove me
 RUN mkdir /workspace/temp
