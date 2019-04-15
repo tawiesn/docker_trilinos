@@ -39,6 +39,7 @@ cmake3 \
     -D CMAKE_RANLIB:STRING="/opt/clang/bin/llvm-ranlib" \
     -D CMAKE_SHARED_LINKER_FLAGS:STRING="-Wl,--no-undefined" \
 \
+    -D TPL_ENABLE_Pthread:STRING=ON \
     -D Trilinos_ENABLE_Fortran=OFF \
     -D Trilinos_ENABLE_EXPLICIT_INSTANTIATION:BOOL=ON \
     -D Trilinos_ENABLE_OpenMP:BOOL=OFF \
@@ -96,9 +97,10 @@ cmake3 \
         -D Tpetra_INST_COMPLEX_FLOAT=OFF \
         -D Tpetra_INST_SERIAL=ON \
         -D Tpetra_INST_OPENMP:BOOL=OFF \
+        -D Tpetra_INST_PTHREAD:BOOL=ON \
         -D Kokkos_ENABLE_Serial:BOOL=ON \
         -D Kokkos_ENABLE_OpenMP:BOOL=OFF \
-        -D Kokkos_ENABLE_Pthread:BOOL=OFF \
+        -D Kokkos_ENABLE_Pthread:BOOL=ON \
         -D Xpetra_Epetra_NO_32BIT_GLOBAL_INDICES=OFF \
         -D Xpetra_Epetra_NO_64BIT_GLOBAL_INDICES=ON \
         -D Teko_USE_LONGLONG_GO:BOOL=OFF \
