@@ -2,7 +2,20 @@
 
 A repository containing different docker containers for Trilinos:
 
-- __dev-jupyter:__ [Docker](https://www.docker.com/) container with [cling](https://root.cern.ch/cling) [jupyter](https://jupyter.org/) kernels and a [Trilinos](https://trilinos.github.io/) installation compatible with the [jupyter](https://jupyter.org/) notebooks in the [tawiesn/trilinos-notebooks](https://github.com/tawiesn/trilinos-notebooks) repository.
+- __dev-jupyter:__ [Docker](https://www.docker.com/) container with [cling](https://root.cern.ch/cling) [jupyter](https://jupyter.org/) kernels and a [Trilinos](https://trilinos.github.io/) installation compatible with the [jupyter](https://jupyter.org/) notebooks in the [tawiesn/trilinos-notebooks](https://github.com/tawiesn/trilinos-notebooks) repository.<p>
+The Trilinos installation has the following features enabled
+  * <b style='color:red'>No MPI support</b>
+  * Epetra
+  * Tpetra (NO=serial, phtreads; GO=int; SC=double, int)
+  * Xpetra
+  * MueLu
+  * Zoltan/Zoltan2
+  * AztecOO/Belos
+  * Amesos/Amesos2
+  * Galeri
+  * Ifpack/Ifpack2
+  * Teko
+
 
 # General instructions for installation
 
