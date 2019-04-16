@@ -47,3 +47,25 @@ docker run --rm -it -v /home/user/trilinos-notebooks/:/workspace/ -P tawiesn/dev
 ```
 to create a new instance of the docker image in a new docker container. 
 > With the `-v /home/user/trilinos-notebooks/:/workspace/` the folder `/home/user/trilinos-notebooks` of the host machine is mounted into the docker container and accessible from within the docker container through the `workspace` folder. Replace the `/home/user/trilinos-notebooks/` by the folder on your host machine where you have cloned the [tawiesn/trilinos-notebooks](https://github.com/tawiesn/trilinos-notebooks) repository.
+
+## Connect with docker container
+
+Run the following command
+```
+docker ps -a
+```
+to list all running docker containers and get the associated name of the docker container running the jupyter server. The name of the docker container is given in the last column of the outut of the `docker ps` command.
+
+Then use the command
+```
+docker inspect brave_colden | grep IPAddress
+```
+to find the IP address of the docker container. Replace the `brave_colden` by the name of your docker container.
+
+The result should contain the IP address of the docker container, e.g., 172.17.0.2, depending on the network configuration of your machine.
+
+Open a brwoser like firefox and type into the address bar
+```
+172.17.0.2:8888
+```
+Replace the IP adress by the IP address you've got from the `docker inspect` call.
