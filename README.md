@@ -68,4 +68,19 @@ Open a brwoser like firefox and type into the address bar
 ```
 172.17.0.2:8888
 ```
-Replace the IP adress by the IP address you've got from the `docker inspect` call.
+Replace the IP adress by the IP address you've got from the `docker inspect` call. You should see the jupyter file browser:
+
+![alt text](https://github.com/tawiesn/docker_trilinos/blob/master/jupyter-browser.jpg "Jupyter file browser")
+
+To load a jupyter notebook, just click on it in the jupyter file browser:
+
+![alt text](https://github.com/tawiesn/docker_trilinos/blob/master/jupyter-epetra-tutorial.jpg "Jupyter file browser")
+
+## Direct access to the underlying container
+
+If you need access to the container and the underlying CentOS Linux installation, you can open a terminal in the browser and run the `bash`:
+
+![alt text](https://github.com/tawiesn/docker_trilinos/blob/master/jupyter-menu.jpg "Jupyter file browser")
+
+![alt text](https://github.com/tawiesn/docker_trilinos/blob/master/jupyter-terminal.jpg "Jupyter file browser")
+
