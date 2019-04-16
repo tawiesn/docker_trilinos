@@ -4,7 +4,7 @@ A repository containing different docker containers for Trilinos:
 
 - __dev-jupyter:__ [Docker](https://www.docker.com/) container with [cling](https://root.cern.ch/cling) [jupyter](https://jupyter.org/) kernels and a [Trilinos](https://trilinos.github.io/) installation compatible with the [jupyter](https://jupyter.org/) notebooks in the [tawiesn/trilinos-notebooks](https://github.com/tawiesn/trilinos-notebooks) repository.
 
-# General installation comments
+# General instructions for installation
 
 ## Installation of Docker
 
@@ -20,7 +20,7 @@ git clone https://github.com/tawiesn/docker_trilinos.git docker_trilinos
 __Note:__ Alternatively, you can also use ssh as protocol instead of https.
 
 ## Create the docker image
-Change to the `dev_jupyter` folder in the repository
+Change to the `dev-jupyter` folder in the repository
 ``` 
 cd docker_trilinos/dev-jupyter
 ```
@@ -32,10 +32,18 @@ This process might take a while. It downloads all the necessary dependencies and
 
 ## Clone the [tawiesn/trilinos-notebooks](https://github.com/tawiesn/trilinos-notebooks) repository
 
-
+Create a new folder for the Trilinos notebooks, e.g.
+```
+cd
+mkdir trilinos-notebooks
+git clone https://github.com/tawiesn/trilinos-notebooks.git trilinos-notebooks
+```
+The [tawiesn/trilinos-notebooks](https://github.com/tawiesn/trilinos-notebooks) repository contains a set of cling notebooks with tutorials for different Trilinos packages. Those cling jupyter notebooks can be used with the `dev-jupyter` docker container, that is created from the docker image in the next step.
 
 ## Create a docker container instance from the docker image
 Use
 ```
-docker run --rm -it -v /home/tobias/trilinos-notebooks/:/workspace/ -P tawiesn/dev-jupyter
+docker run --rm -it -v /home/user/trilinos-notebooks/:/workspace/ -P tawiesn/dev-jupyter
 ```
+to create a new instance of the docker image in a new docker container. 
+> With the `-v /home/user/trilinos-notebooks/:/workspace/` the folder `/home/user/trilinos-notebooks` of the host machine is mounted into the docker container and accessible from within the docker container through the `workspace` folder. Replace the `/home/user/trilinos-notebooks/` by the folder on your host machine where you have cloned the [tawiesn/trilinos-notebooks](https://github.com/tawiesn/trilinos-notebooks) repository.
