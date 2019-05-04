@@ -16,8 +16,18 @@ The Trilinos installation has the following features enabled
   * Ifpack/Ifpack2
   * Teko
  
- See [here](installation_dev_jupyter.md) for the installation instructions.
-
+ - __dev-trilinos:__ Example for a [Docker](https://www.docker.com) container with a regular [Trilinos](https://trilinos.github.io/) installation. It is based on CentOS and OpenMPI with a GCC compiler and some TPLs. It only contains a small number of Trilinos packages. It serves as an example which should be adapted to your specific needs as described in the [installation instructions](installation_dev_trilinos.md).
+ The Trilinos installation only contains the following packages:
+   * Amesos
+   * AztecOO
+   * Belos
+   * Isorropia
+   * Kokkos
+   * ML
+   * Stratimikos
+   * Zoltan
+   
+   There is support for OpenMPI, OpenMP, HDF5 and Netcdf enabled.
 
 # General instructions for installation
 
