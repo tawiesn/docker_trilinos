@@ -15,6 +15,8 @@ The Trilinos installation has the following features enabled
   * Galeri
   * Ifpack/Ifpack2
   * Teko
+ 
+ See [here](installation_dev_jupyter.md) for the installation instructions.
 
 
 # General instructions for installation
