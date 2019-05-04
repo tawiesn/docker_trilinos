@@ -1,7 +1,7 @@
 # build docker container using
 #   docker build -t tawiesn/dev-base .
 # run the container using
-#   docker run -i -t tawiesn/tcoe1 /bin/bash
+#   docker run -i -t --rm --name dev-base tawiesn/dev-base /bin/bash
 #
 # This image contains a basic CentOS with a standard development environment
 # (compilers, MPI, ...)
